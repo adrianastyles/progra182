@@ -30,8 +30,12 @@ print("El villano se llama " + villano.nombre)
 print("Pertenece a la especie " + villano.especie)
 print("Su altura es " + str(villano.altura) + "\n")
 
-#usar los métodos
-
+#usar los métodos de héroe y villano
+print("\nHÉROE: \n")
 heroe.correr(True)
 heroe.lanzarGranadas()
-heroe.recargarArma(37)
+heroe.recargarArma(recargaH)
+print("\nVILLANO: \n")
+villano.correr(True)
+villano.lanzarGranadas()
+villano.recargarArma(recargaV)
