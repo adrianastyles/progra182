@@ -14,8 +14,9 @@ nombreV = input("Escribe el nombre del villano: ")
 alturaV = float(input("Escribe la altura del villano: "))
 recargaV = int(input("Ingresa las balas para el villano: "))
 
-#instancia de la clase personaje
-heroe = Personaje()
+#crear objetos
+heroe = Personaje(especieH, nombreH, alturaH)
+villano = Personaje(especieV, nombreV, alturaV)
 
 #usamos atributos
 print("El personaje se llama " + heroe.nombre)
