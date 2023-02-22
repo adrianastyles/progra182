@@ -18,10 +18,17 @@ recargaV = int(input("Ingresa las balas para el villano: "))
 heroe = Personaje(especieH, nombreH, alturaH)
 villano = Personaje(especieV, nombreV, alturaV)
 
-#usamos atributos
-print("El personaje se llama " + heroe.nombre)
+#usamos atributos héroe y villano
+
+print("HÉROE: \n")
+print("El héroe se llama " + heroe.nombre)
 print("Pertenece a la especie " + heroe.especie)
 print("Su altura es " + str(heroe.altura))
+
+print("VILLANO: \n")
+print("El villano se llama " + villano.nombre)
+print("Pertenece a la especie " + villano.especie)
+print("Su altura es " + str(villano.altura))
 
 #usar los métodos
 
