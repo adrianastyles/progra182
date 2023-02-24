@@ -19,6 +19,8 @@ recargaV = int(input("Ingresa las balas para el villano: "))
 heroe = Personaje(especieH, nombreH, alturaH)
 villano = Personaje(especieV, nombreV, alturaV)
 
+heroe.setNombre("Louis")
+
 #usamos atributos héroe y villano
 
 print("\nHÉROE: \n")
@@ -36,3 +38,4 @@ print("Su altura es " + str(villano.getAltura()))
 villano.correr(True)
 villano.lanzarGranadas()
 villano.recargarArma(recargaV)
+#villano.__pensar()
