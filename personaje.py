@@ -3,9 +3,9 @@ class Personaje:
     #agregar constructor
     
     def __init__ (self, esp, nom, alt):
-        self.especie = esp
-        self.nombre = nom
-        self.altura = alt
+        self.__especie = esp
+        self.__nombre = nom
+        self.__altura = alt
     
     #métodos
     
