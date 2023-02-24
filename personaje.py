@@ -11,9 +11,9 @@ class Personaje:
     
     def correr(self, status):
         if(status):
-            print("El personaje " + self.nombre + " está corriendo.")
+            print("El personaje " + self.__nombre + " está corriendo.")
         else:
-            print("El personaje " + self.nombre + " se detuvo.")
+            print("El personaje " + self.__nombre + " se detuvo.")
     
     def lanzarGranadas(self):
         print ("Se lanzó la granada.")
