@@ -22,6 +22,11 @@ class Personaje:
         cargador = 10
         cargador = cargador + municiones
         print ("El arma recargada tiene " + str(cargador) + " balas")
+    
+    def __pensar(self):
+        print ("Estoy pensando.")
+        
+    #Gets y sets 
         
     def getEspecie (self):
         return self.__especie
