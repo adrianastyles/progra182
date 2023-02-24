@@ -15,6 +15,7 @@ alturaV = float(input("Escribe la altura del villano: "))
 recargaV = int(input("Ingresa las balas para el villano: "))
 
 #crear objetos
+
 heroe = Personaje(especieH, nombreH, alturaH)
 villano = Personaje(especieV, nombreV, alturaV)
 

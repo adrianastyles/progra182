@@ -1,12 +1,14 @@
 class Personaje:
     
     #agregar constructor
+    
     def __init__ (self, esp, nom, alt):
         self.especie = esp
         self.nombre = nom
         self.altura = alt
     
     #métodos
+    
     def correr(self, status):
         if(status):
             print("El personaje " + self.nombre + " está corriendo.")
