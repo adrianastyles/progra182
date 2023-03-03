@@ -11,6 +11,8 @@ seccion1.pack(expand = True, fill = 'both')
 #CREAR FUNCIONES
 
 def Ingresar():
+    correo=tk.StringVar()
+    contraseña=tk.StringVar()
     if (correo == "" or contraseña == ""):
         messagebox.showerror('Error', "Ingrese sus datos")
     else:
