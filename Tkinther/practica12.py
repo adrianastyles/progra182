@@ -1,5 +1,6 @@
 from tkinter import Tk, Button, Frame, messagebox, ttk
 import tkinter as tk
+import getpass
 
 ventana = Tk()
 ventana.title("Login")
@@ -11,8 +12,6 @@ seccion1.pack(expand = True, fill = 'both')
 #CREAR FUNCIONES
 
 def Ingresar():
-    correo=tk.StringVar()
-    contraseña=tk.StringVar()
     if (correo == "" or contraseña == ""):
         messagebox.showerror('Error', "Ingrese sus datos")
     else:
@@ -33,7 +32,7 @@ contraseña=tk.StringVar()
 
 label2=tk.Label(seccion1,text="Ingrese su contraseña:")
 label2.place (x=30, y=110)
-entry2=tk.Entry(seccion1, width=35, textvariable = contraseña)
+entry2=tk.Entry(seccion1, width=35, textvariable = contraseña, show = "*")
 entry2.place(x=160, y = 110)
 
 #BOTON INGRESAR
