@@ -1,31 +1,17 @@
+from tkinter import messagebox
 class Validador:
     
 
-    def __init__ (self, c, cont):
-        self.__contraseña = cont
-        self.__correo = c
+    def __init__ (self):
+        self.__contraseña = "harrystyles"
+        self.__correo = "121038379@upq.edu.mx"
         
         
-    def Validador1(self, cont):
-        
-        from tkinter import messagebox
-        cont1 = "harrystyles"
+    def Validador1(self, c, cont):
         if (c == "" or cont == ""):
             messagebox.showerror('Error', "Llene todos los campos")
         else:
-            if (cont == cont1):
+            if (self.__correo == c and  self.__contraseña == cont):
                 messagebox.showinfo('Información', "Inicio de sesión exitoso")
             else:
                 messagebox.showerror('Error', "Ingrese la contraseña correcta")
-            
-    def getContraseña (self):
-        return self.__contraseña
-    
-    def setContraseña (self, cont):
-        self.__contraseña = cont
-        
-    def getCorreo (self):
-        return self.__correo
-    
-    def setCorro (self, c):
-        self.__correo = c
