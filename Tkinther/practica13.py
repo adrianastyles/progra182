@@ -1,7 +1,7 @@
 from tkinter import Tk, Button, Frame
 import tkinter as tk
 from tkinter import *
-from validador import *
+from generador import *
 
 #CREAR FUNCIONES
 
@@ -12,7 +12,12 @@ ventana.geometry("450x250")
 seccion1 = Frame(ventana, bg = "#e9edd1")
 seccion1.pack(expand = True, fill = 'both')
 
+datos = Generador()
+def Ingresar():
+    datos.Generador1(var1.get(), var2.get(), var3.get())
+
 #CONTRASEÑA
+
 var1 = tk.StringVar()
 label1=tk.Label(seccion1, text="Ingrese la longitud de contraseña:")
 label1.place (x=10, y=30)
@@ -39,7 +44,7 @@ c4.place(x=200, y = 150)
 
 #BOTON GENERAR/VALIDAR
 
-botonIngresar = Button(seccion1, text = "Generar", fg = "black", bg = "#d5d6ce")
+botonIngresar = Button(seccion1, text = "Generar", fg = "black", bg = "#d5d6ce", command = Ingresar)
 botonIngresar.place(x=70, y=200, width = 100, height = 30)
 
 botonValidar = Button(seccion1, text = "Validar", fg = "black", bg = "#d5d6ce")
