@@ -12,8 +12,9 @@ ventana.geometry("450x250")
 seccion1 = Frame(ventana, bg = "#e9edd1")
 seccion1.pack(expand = True, fill = 'both')
 
-datos = Generador()
+
 def Ingresar():
+    datos = Generador()
     datos.Generador1(var1.get(), var2.get(), var3.get())
 
 #CONTRASEÑA
