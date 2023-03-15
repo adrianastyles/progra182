@@ -6,7 +6,7 @@ from validador import *
 #CREAR FUNCIONES
 va = Validador()
 def Ingresar():
-    va.Validador1(var1.get(), var2.get())
+    va.Generador1(var1.get(), var2.get())
     
 ventana = Tk()
 ventana.title("Login")

@@ -6,7 +6,7 @@ from matricula import *
 
 def Generar():
     datos = GeneradorMatricula(var1.get(), var2.get(), var3.get(), var4.get(), var5.get())
-    GeneradorMatricula.Generador1(nombre1, apellidoP1, apellidoM1, año1, carrera1)
+    print (datos.getAñoCurso(), datos.getAño(), datos.getNombre(), datos.getApellidoP(), datos.getApellidoM(), datos.getCarrera())
 
 ventana = Tk()
 ventana.title("Generador de matrículas")
