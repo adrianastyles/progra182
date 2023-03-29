@@ -9,6 +9,16 @@ controlador = controladorBD()
 #metodo que usará mi objeto controlador para insertar
 def EjecutaInsert():
     controlador.GuardarUsuario(varNom.get(), varCor.get(), varCont.get())
+    
+def EjecutaSelectU():
+    rsUsu = controlador.consultarUsuario(varBus.get())
+    for usu in rsUsu:
+        cadena = str(usu[0]) + " " + usu[1] + " " + usu[2] + " " + str(usu[3])
+        
+    if (rsUsu):
+        print (cadena) 
+    else:
+        messagebox.showwarning ("No encontrado", "El usuario no existe en la base de datos")
 
 Ventana = Tk()
 Ventana.title("CRUD de usuarios")
@@ -40,13 +50,24 @@ txtCont = Entry(pestana1, textvariable = varCont).pack()
 
 btnGuardar = Button(pestana1, text = "Guardar usuario", command = EjecutaInsert).pack()
 
+#Pestaña 2: Buscar usuario
+
+titulo2 = Label(pestana2, text = "Buscar usuario", fg = "green", font = ("Modern",18)).pack()
+
+varBus = tk.StringVar()
+lblid = Label(pestana2, text = "Identificador de usuario:").pack()
+txtid = Entry(pestana2, textvariable = varBus).pack()
+btnBusqueda = Button(pestana2, text = "Buscar", command = EjecutaSelectU).pack()
+
+subBus = Label(pestana2, text = "Registrado:", fg = "blue", font = ("Modern",15)).pack()
+textBus = tk.Text(pestana2, height=5, width=52).pack()
+
+
 
 panel.add(pestana1, text = 'Formulario de usuarios')
 panel.add(pestana2, text = 'Buscar usuario')
 panel.add(pestana3, text = 'Consultar usuarios')
 panel.add(pestana4, text = 'Actualizar usuario')
-
-
 
 
 Ventana.mainloop()
