@@ -27,8 +27,12 @@ def EjecutaBusquedaUsuarios():
     bus = controlador.consultarTodosLosUsuarios()
     
     for usu in bus:
-        cadena = str(usu[0]) + " " + usu[1] + " " + usu[2] + " " + str(usu[3])
-        print (cadena)
+        cadena1 = str(usu[0]) + " " + usu[1] + " " + usu[2] + " " + str(usu[3])
+        print("\n")
+        textUsuarios.config(state = 'normal')
+        textUsuarios.delete(2.0, 'end')
+        textUsuarios.insert('end', cadena1)
+        textUsuarios.config(state='disabled')
 
 Ventana = Tk()
 Ventana.title("CRUD de usuarios")
@@ -70,10 +74,13 @@ txtid = Entry(pestana2, textvariable = varBus).pack()
 btnBusqueda = Button(pestana2, text = "Buscar", command = EjecutaSelectU).pack()
 
 subBus = Label(pestana2, text = "Registrado:", fg = "blue", font = ("Modern",15)).pack()
-textBus = tk.Text(pestana2, height=5, width=52).pack()
+textBus = tk.Text(pestana2, height=5, width=52)
+textBus.pack()
 
+#PESTAÑA 3
 titulo3 = Label(pestana3, text = "Consultar usuarios", fg = "blue", font = ("Modern", 18)). pack()
-textUsuarios = tk.Text(pestana3, height=5, width=52).pack()
+textUsuarios = tk.Text(pestana3, height=5, width=52)
+textUsuarios.pack()
 btnUsu = Button(pestana3, text = "Buscar", command = EjecutaBusquedaUsuarios).pack()
 
 
