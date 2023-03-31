@@ -28,7 +28,6 @@ def EjecutaBusquedaUsuarios():
     
     for usu in bus:
         cadena1 = str(usu[0]) + " " + usu[1] + " " + usu[2] + " " + str(usu[3])
-        print("\n")
         textUsuarios.config(state = 'normal')
         textUsuarios.delete(2.0, 'end')
         textUsuarios.insert('end', cadena1)
@@ -79,7 +78,7 @@ textBus.pack()
 
 #PESTAÑA 3
 titulo3 = Label(pestana3, text = "Consultar usuarios", fg = "blue", font = ("Modern", 18)). pack()
-textUsuarios = tk.Text(pestana3, height=5, width=52)
+textUsuarios = tk.Text(pestana3, height=10, width=52)
 textUsuarios.pack()
 btnUsu = Button(pestana3, text = "Buscar", command = EjecutaBusquedaUsuarios).pack()
 
