@@ -55,7 +55,7 @@ lblCor = Label(pestana1, text = "Correo:").pack()
 txtCor = Entry(pestana1, textvariable = varCor).pack()
 
 lblCont = Label(pestana1, text = "Contraseña:").pack()
-txtCont = Entry(pestana1, textvariable = varCont).pack()
+txtCont = Entry(pestana1, textvariable = varCont, show = "*").pack()
 
 btnGuardar = Button(pestana1, text = "Guardar usuario", command = EjecutaInsert).pack()
 
