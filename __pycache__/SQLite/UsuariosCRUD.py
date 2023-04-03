@@ -25,17 +25,13 @@ def EjecutaSelectU():
 
 def EjecutaBusquedaUsuarios():
     bus = controlador.consultarTodosLosUsuarios()
-    
+    tabla.delete(*tabla.get_children()) #limpia
     for usu in bus:
-        cadena1 = str(usu[0]) + " " + usu[1] + " " + usu[2] + " " + str(usu[3])
-        textUsuarios.config(state = 'normal')
-        textUsuarios.delete(2.0, 'end')
-        textUsuarios.insert('end', cadena1)
-        textUsuarios.config(state='disabled')
+        tabla.insert("", "end", text = usu[0], values = (usu[1], usu[2], usu[3]))
 
 Ventana = Tk()
 Ventana.title("CRUD de usuarios")
-Ventana.geometry("500x300")
+Ventana.geometry("500x350")
 
 panel = ttk.Notebook(Ventana)
 panel.pack(fill = 'both', expand = 'yes')
@@ -78,8 +74,17 @@ textBus.pack()
 
 #PESTAÑA 3
 titulo3 = Label(pestana3, text = "Consultar usuarios", fg = "blue", font = ("Modern", 18)). pack()
-textUsuarios = tk.Text(pestana3, height=10, width=52)
-textUsuarios.pack()
+tabla = ttk.Treeview (pestana3)
+tabla ["columns"] = ("Nombre", "Correo", "Contraseña")
+tabla.column("#0", width = 60, minwidth = 60)
+tabla.column("Nombre", width = 100, minwidth = 100)
+tabla.column("Correo", width = 200, minwidth = 200)
+tabla.column("Contraseña", width = 100, minwidth = 100)
+tabla.heading("#0", text = "ID", anchor = tk.CENTER)
+tabla.heading("Nombre", text = "Nombre", anchor = tk.CENTER)
+tabla.heading("Correo", text = "Correo", anchor = tk.CENTER)
+tabla.heading("Contraseña", text = "Contraseña", anchor = tk.CENTER)
+tabla.pack()
 btnUsu = Button(pestana3, text = "Buscar", command = EjecutaBusquedaUsuarios).pack()
 
 
