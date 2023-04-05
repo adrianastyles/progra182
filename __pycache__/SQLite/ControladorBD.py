@@ -93,3 +93,26 @@ class controladorBD:
                 
         except sqlite3.OperationalError:
             print ("Error de consulta")
+            
+    def EliminarUsuarios(self, id):
+        conx = self.conexionBD()
+        
+        #2. Verificar que el id no esté vacío
+        if (id == ""):
+            messagebox.showwarning ("Warning", "Ingresa un ID")
+            conx.close()
+        else:
+            #3. Ejecutar
+            try: 
+                #4. Preparar lo necesario
+                cursor = conx.cursor()
+                sqlSelect = "delete from tbregistrados where id = "+ id
+                
+                #5. Ejecutar y cerrar conexión
+                cursor.execute(sqlSelect)
+                RSusuario = cursor.fetchall()
+                conx.close()
+                return RSusuario
+                
+            except sqlite3.OperationalError:
+                print ("Error de consulta")

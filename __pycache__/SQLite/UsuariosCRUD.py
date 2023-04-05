@@ -29,6 +29,10 @@ def EjecutaBusquedaUsuarios():
     for usu in bus:
         tabla.insert("", "end", text = usu[0], values = (usu[1], usu[2], usu[3]))
 
+def EliminaSelectU():
+        controlador.EliminarUsuarios(varDelete.get())
+        
+
 Ventana = Tk()
 Ventana.title("CRUD de usuarios")
 Ventana.geometry("500x350")
@@ -40,6 +44,7 @@ pestana1 = ttk.Frame(panel)
 pestana2 = ttk.Frame(panel)
 pestana3 = ttk.Frame(panel)
 pestana4 = ttk.Frame(panel)
+pestana5 = ttk.Frame(panel)
 
 # Pestaña 1
 
@@ -87,11 +92,19 @@ tabla.heading("Contraseña", text = "Contraseña", anchor = tk.CENTER)
 tabla.pack()
 btnUsu = Button(pestana3, text = "Buscar", command = EjecutaBusquedaUsuarios).pack()
 
+#PESTAÑA 5
+
+varDelete = tk.StringVar()
+titulo5 = Label(pestana5, text = "Eliminar usuarios", fg = "blue", font = ("Modern", 18)). pack()
+lblID1 = Label(pestana5, text = "Identificador de usuario:").pack()
+txtID1 = Entry(pestana5, textvariable = varDelete).pack()
+btnEliminar = Button(pestana5, text = "Eliminar", command = EliminaSelectU).pack()
 
 panel.add(pestana1, text = 'Formulario de usuarios')
 panel.add(pestana2, text = 'Buscar usuario')
 panel.add(pestana3, text = 'Consultar usuarios')
 panel.add(pestana4, text = 'Actualizar usuario')
+panel.add(pestana5, text = 'Eliminar usuario')
 
 
 Ventana.mainloop()
