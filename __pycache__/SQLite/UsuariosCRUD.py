@@ -12,14 +12,11 @@ def EjecutaInsert():
     
 def EjecutaSelectU():
     rsUsu = controlador.consultarUsuario(varBus.get())
-    for usu in rsUsu:
-        cadena = str(usu[0]) + " " + usu[1] + " " + usu[2] + " " + str(usu[3])
         
     if (rsUsu):
-        textBus.config(state = 'normal')
-        textBus.delete(1.0, 'end')
-        textBus.insert('end', cadena)
-        textBus.config(state='disabled')
+        for usu in rsUsu:
+            tabla1.delete(*tabla1.get_children())
+            tabla1.insert("", "end", text = usu[0], values = (usu[1], usu[2], usu[3]))
     else:
         messagebox.showwarning ("No encontrado", "El usuario no existe en la base de datos")
 
@@ -30,12 +27,24 @@ def EjecutaBusquedaUsuarios():
         tabla.insert("", "end", text = usu[0], values = (usu[1], usu[2], usu[3]))
 
 def EliminaSelectU():
-        controlador.EliminarUsuarios(varDelete.get())
-        
+    controlador.EliminarUsuarios(varDelete.get())
+    messagebox.showinfo("Eliminado exitoso", "Se eliminó el usuario exitosamente")
+    
+def ActualizarNombreU():
+    controlador.ActualizarUsuariosNom(varAct.get(), varNomA.get())
+    messagebox.showinfo("Actualización exitosa", "Se actualizó el nombre del usuario exitosamente")
+
+def ActualizarCorreoU():
+    controlador.ActualizarUsuariosCor(varAct.get(), varCorA.get())
+    messagebox.showinfo("Actualización exitosa", "Se actualizó el correo del usuario exitosamente")
+
+def ActualizarContraseñaU():
+    controlador.ActualizarUsuariosCon(varAct.get(), varConA.get())
+    messagebox.showinfo("Actualización exitosa", "Se actualizó la contraseña del usuario exitosamente")
 
 Ventana = Tk()
 Ventana.title("CRUD de usuarios")
-Ventana.geometry("500x350")
+Ventana.geometry("500x450")
 
 panel = ttk.Notebook(Ventana)
 panel.pack(fill = 'both', expand = 'yes')
@@ -74,8 +83,17 @@ txtid = Entry(pestana2, textvariable = varBus).pack()
 btnBusqueda = Button(pestana2, text = "Buscar", command = EjecutaSelectU).pack()
 
 subBus = Label(pestana2, text = "Registrado:", fg = "blue", font = ("Modern",15)).pack()
-textBus = tk.Text(pestana2, height=5, width=52)
-textBus.pack()
+tabla1 = ttk.Treeview (pestana2)
+tabla1 ["columns"] = ("Nombre", "Correo", "Contraseña")
+tabla1.column("#0", width = 60, minwidth = 60)
+tabla1.column("Nombre", width = 100, minwidth = 100)
+tabla1.column("Correo", width = 200, minwidth = 200)
+tabla1.column("Contraseña", width = 100, minwidth = 100)
+tabla1.heading("#0", text = "ID", anchor = tk.CENTER)
+tabla1.heading("Nombre", text = "Nombre", anchor = tk.CENTER)
+tabla1.heading("Correo", text = "Correo", anchor = tk.CENTER)
+tabla1.heading("Contraseña", text = "Contraseña", anchor = tk.CENTER)
+tabla1.pack()
 
 #PESTAÑA 3
 titulo3 = Label(pestana3, text = "Consultar usuarios", fg = "blue", font = ("Modern", 18)). pack()
@@ -91,6 +109,24 @@ tabla.heading("Correo", text = "Correo", anchor = tk.CENTER)
 tabla.heading("Contraseña", text = "Contraseña", anchor = tk.CENTER)
 tabla.pack()
 btnUsu = Button(pestana3, text = "Buscar", command = EjecutaBusquedaUsuarios).pack()
+
+#PESTAÑA 4
+varAct = tk.StringVar()
+varNomA = tk.StringVar()
+varCorA = tk.StringVar()
+varConA = tk.StringVar()
+titulo4 = Label(pestana4, text = "Actualizar usuarios", fg = "blue", font = ("Modern", 18)). pack()
+lblID2 = Label(pestana4, text = "Identificador de usuario:").pack()
+txtID2 = Entry(pestana4, textvariable = varAct).pack()
+lblNom1 = Label(pestana4, text = "Nombre:").pack()
+txtNom1 = Entry(pestana4, textvariable = varNomA).pack()
+btnNom = Button(pestana4, text = "Actualizar nombre", command = ActualizarNombreU).pack()
+lblCor1 = Label(pestana4, text = "Correo:").pack()
+txtCor1 = Entry(pestana4, textvariable = varCorA).pack()
+btnCor = Button(pestana4, text = "Actualizar correo", command = ActualizarCorreoU).pack()
+lblCon1 = Label(pestana4, text = "Contraseña:").pack()
+txtCon1 = Entry(pestana4, textvariable = varConA).pack()
+btnCon = Button(pestana4, text = "Actualizar contraseña", command = ActualizarContraseñaU).pack()
 
 #PESTAÑA 5
 

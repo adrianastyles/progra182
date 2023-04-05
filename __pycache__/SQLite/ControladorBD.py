@@ -65,7 +65,7 @@ class controladorBD:
             try: 
                 #4. Preparar lo necesario
                 cursor = conx.cursor()
-                sqlSelect = "select * from tbregistrados where id = "+ id
+                sqlSelect = "select * from tbregistrados where id = " + id
                 
                 #5. Ejecutar y cerrar conexión
                 cursor.execute(sqlSelect)
@@ -92,7 +92,74 @@ class controladorBD:
             return RSusuario
                 
         except sqlite3.OperationalError:
-            print ("Error de consulta")
+            print ("Error de consulta todos los usuarios")
+    
+    def ActualizarUsuariosNom(self, id, nom):
+        conx = self.conexionBD()
+        
+        #2. Verificar que el id no esté vacío
+        if (id == "" or nom == ""):
+            messagebox.showwarning ("Warning", "Ingresa el ID y nombre")
+            conx.close()
+        else:
+            #3. Ejecutar la consulta
+            try: 
+                #4. Preparar lo necesario
+                cursor = conx.cursor()
+                sqlSelect = "UPDATE tbregistrados SET nombre = ? WHERE id = ?"
+                actualizar = (nom, id)
+                #5. Ejecutar y cerrar conexión
+                cursor.execute(sqlSelect, actualizar)
+                conx.commit()
+                conx.close()
+                
+            except sqlite3.OperationalError:
+                print ("Error para actualizar nombre")
+    
+    def ActualizarUsuariosCor(self, id, cor):
+        conx = self.conexionBD()
+        
+        #2. Verificar que el id no esté vacío
+        if (id == "" or cor == ""):
+            messagebox.showwarning ("Warning", "Ingresa el ID y correo")
+            conx.close()
+        else:
+            #3. Ejecutar la consulta
+            try: 
+                #4. Preparar lo necesario
+                cursor = conx.cursor()
+                sqlSelect = "UPDATE tbregistrados SET correo = ? WHERE id = ?"
+                actualizar = (cor, id)
+                #5. Ejecutar y cerrar conexión
+                cursor.execute(sqlSelect, actualizar)
+                conx.commit()
+                conx.close()
+                
+            except sqlite3.OperationalError:
+                print ("Error para actualizar correo")
+                
+    def ActualizarUsuariosCon(self, id, con):
+        conx = self.conexionBD()
+        
+        #2. Verificar que el id no esté vacío
+        if (id == "" or con == ""):
+            messagebox.showwarning ("Warning", "Ingresa el ID y contraseña")
+            conx.close()
+        else:
+            #3. Ejecutar la consulta
+            try: 
+                #4. Preparar lo necesario
+                cursor = conx.cursor()
+                conH = self.encriptarContra(con)
+                sqlSelect = "UPDATE tbregistrados SET contraseña = ? WHERE id = ?"
+                actualizar = (conH, id)
+                #5. Ejecutar y cerrar conexión
+                cursor.execute(sqlSelect, actualizar)
+                conx.commit()
+                conx.close()
+                
+            except sqlite3.OperationalError:
+                print ("Error para actualizar contraseña")
             
     def EliminarUsuarios(self, id):
         conx = self.conexionBD()
@@ -102,17 +169,16 @@ class controladorBD:
             messagebox.showwarning ("Warning", "Ingresa un ID")
             conx.close()
         else:
-            #3. Ejecutar
+            #3. Ejecutar la consulta
             try: 
                 #4. Preparar lo necesario
                 cursor = conx.cursor()
-                sqlSelect = "delete from tbregistrados where id = "+ id
+                sqlSelect = "DELETE FROM tbregistrados WHERE id = "+ id
                 
                 #5. Ejecutar y cerrar conexión
                 cursor.execute(sqlSelect)
-                RSusuario = cursor.fetchall()
+                conx.commit()
                 conx.close()
-                return RSusuario
                 
             except sqlite3.OperationalError:
-                print ("Error de consulta")
+                print ("Error")
