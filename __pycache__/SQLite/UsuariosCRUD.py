@@ -18,7 +18,7 @@ def EjecutaSelectU():
             tabla1.delete(*tabla1.get_children())
             tabla1.insert("", "end", text = usu[0], values = (usu[1], usu[2], usu[3]))
     else:
-        messagebox.showwarning ("No encontrado", "El usuario no existe en la base de datos")
+        messagebox.showwarning ("No encontrado", "El usuario no existe en la base de datos", icon = "error")
 
 def EjecutaBusquedaUsuarios():
     bus = controlador.consultarTodosLosUsuarios()
@@ -27,8 +27,12 @@ def EjecutaBusquedaUsuarios():
         tabla.insert("", "end", text = usu[0], values = (usu[1], usu[2], usu[3]))
 
 def EliminaSelectU():
-    controlador.EliminarUsuarios(varDelete.get())
-    messagebox.showinfo("Eliminado exitoso", "Se eliminó el usuario exitosamente")
+    msg = messagebox.askquestion("Warning", "¿Está seguro de eliminar al usuario?")
+    if (msg == "no"):
+        messagebox.showinfo("No eliminado", "Usuario no eliminado")
+    else:
+        controlador.EliminarUsuarios(varDelete.get())
+        messagebox.showinfo("Eliminado exitoso", "Usuario eliminado")
     
 def ActualizarNombreU():
     controlador.ActualizarUsuariosNom(varAct.get(), varNomA.get())
@@ -81,7 +85,6 @@ varBus = tk.StringVar()
 lblid = Label(pestana2, text = "Identificador de usuario:").pack()
 txtid = Entry(pestana2, textvariable = varBus).pack()
 btnBusqueda = Button(pestana2, text = "Buscar", command = EjecutaSelectU).pack()
-
 subBus = Label(pestana2, text = "Registrado:", fg = "blue", font = ("Modern",15)).pack()
 tabla1 = ttk.Treeview (pestana2)
 tabla1 ["columns"] = ("Nombre", "Correo", "Contraseña")
