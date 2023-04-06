@@ -128,7 +128,7 @@ lblCor1 = Label(pestana4, text = "Correo:").pack()
 txtCor1 = Entry(pestana4, textvariable = varCorA).pack()
 btnCor = Button(pestana4, text = "Actualizar correo", command = ActualizarCorreoU).pack()
 lblCon1 = Label(pestana4, text = "Contraseña:").pack()
-txtCon1 = Entry(pestana4, textvariable = varConA).pack()
+txtCon1 = Entry(pestana4, textvariable = varConA, show = "*").pack()
 btnCon = Button(pestana4, text = "Actualizar contraseña", command = ActualizarContraseñaU).pack()
 
 #PESTAÑA 5
