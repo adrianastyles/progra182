@@ -8,7 +8,7 @@ class controladorBD:
     
     def conexionBD (self):
         try:
-            conexion = sqlite3.connect ("C:/Users/mecat/OneDrive/Documentos/GitHub/POO182/__pycache__/Examen parcial 3/BD_BANCO1.db")
+            conexion = sqlite3.connect ("C:/Users/mecat/OneDrive/Documentos/GitHub/POO182/__pycache__/Examen parcial 3/BD_BANCO2.db")
             print ("conectado a la BD")
             return conexion
         
