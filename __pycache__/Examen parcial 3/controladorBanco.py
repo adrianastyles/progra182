@@ -1,8 +1,10 @@
 from tkinter import messagebox
 import sqlite3
 
-
-class controladorBDBanco:
+class controladorBD:
+    
+    def __init__ (self):
+        pass
     
     def conexionBD (self):
         try:
@@ -11,21 +13,111 @@ class controladorBDBanco:
             return conexion
         
         except sqlite3.OperationalError:
-            print ("No se pudo conectar")
-    
-    def Guardar (self, nom, nocuenta, saldo):
-        
+            print ("no se pudo conectar")
+            
+    def Guardar (self, nom, cuenta, saldo):
+        #llamar metodo conexion
         conx = self.conexionBD()
         
-        if (nom == "" or nocuenta == "" or saldo == ""):
+        #validar vacíos
+        if (nom == "" or cuenta == "" or saldo == ""):
             messagebox.showwarning ("Warning", "Formulario incompleto")
             conx.close()
             
         else:
+            #realizar insert a la base de datos
+            #preparar variables
             cursor = conx.cursor()
-            datos = (nom, nocuenta, saldo)
-            sqlInsert = "insert into TBCuentas (Nombre, NoCuenta, Saldo) values (?, ?, ?)"
+            datos = (nom, cuenta, saldo)
+            sqlInsert = "insert into TBCuentas(Nombre, Cuenta, Saldo) values (?, ?, ?)"
+            
+            #ejecutar insert
             cursor.execute(sqlInsert, datos)
             conx.commit()
             conx.close
             messagebox.showinfo("Registro exitoso", "Registro guardado")
+            
+    def consultarRegistros(self):
+        #1. Realizar conexión a la base de datos
+        conx = self.conexionBD()
+        
+        try: 
+                #4. Preparar lo necesario
+            cursor = conx.cursor()
+            sqlSelect = "select * from TBCuenta"
+                
+                #5. Ejecutar y cerrar conexión
+            cursor.execute(sqlSelect)
+            RSregistro = cursor.fetchall()
+            conx.close()
+            return RSregistro
+                
+        except sqlite3.OperationalError:
+            print ("Error de consulta todos los usuarios")
+            
+    def ActualizarNom(self, id, nom):
+        conx = self.conexionBD()
+        
+        #2. Verificar que el id no esté vacío
+        if (id == "" or nom == ""):
+            messagebox.showwarning ("Warning", "Ingresa el ID y nombre")
+            conx.close()
+        else:
+            #3. Ejecutar la consulta
+            try: 
+                #4. Preparar lo necesario
+                cursor = conx.cursor()
+                sqlSelect = "UPDATE TBCuentas SET Nombre = ? WHERE IDCuenta = ?"
+                actualizar = (nom, id)
+                #5. Ejecutar y cerrar conexión
+                cursor.execute(sqlSelect, actualizar)
+                conx.commit()
+                conx.close()
+                
+            except sqlite3.OperationalError:
+                print ("Error para actualizar nombre")
+    
+    def ActualizarSaldo(self, id, saldo):
+        conx = self.conexionBD()
+        
+        #2. Verificar que el id no esté vacío
+        if (id == "" or saldo == ""):
+            messagebox.showwarning ("Warning", "Ingresa el ID y nombre")
+            conx.close()
+        else:
+            #3. Ejecutar la consulta
+            try: 
+                #4. Preparar lo necesario
+                cursor = conx.cursor()
+                sqlSelect = "UPDATE TBCuenta SET Saldo = ? WHERE IDCuenta = ?"
+                actualizar = (saldo, id)
+                #5. Ejecutar y cerrar conexión
+                cursor.execute(sqlSelect, actualizar)
+                conx.commit()
+                conx.close()
+                
+            except sqlite3.OperationalError:
+                print ("Error para actualizar nombre")
+                
+    def ActualizarCuenta(self, id, cuenta):
+        conx = self.conexionBD()
+        
+        #2. Verificar que el id no esté vacío
+        if (id == "" or cuenta == ""):
+            messagebox.showwarning ("Warning", "Ingresa el ID y nombre")
+            conx.close()
+        else:
+            #3. Ejecutar la consulta
+            try: 
+                #4. Preparar lo necesario
+                cursor = conx.cursor()
+                sqlSelect = "UPDATE TBCuentas SET Cuenta = ? WHERE IDCuenta = ?"
+                actualizar = (cuenta, id)
+                #5. Ejecutar y cerrar conexión
+                cursor.execute(sqlSelect, actualizar)
+                conx.commit()
+                conx.close()
+                
+            except sqlite3.OperationalError:
+                print ("Error para actualizar nombre")
+    

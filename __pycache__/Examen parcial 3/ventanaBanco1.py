@@ -3,13 +3,29 @@ from tkinter import ttk
 import tkinter as tk
 from controladorBanco import *
 
-controlador = controladorBDBanco
+controlador1 = controladorBD
 
-def Insert():
-    controlador.Guardar(varNom.get(), varNCuenta.get(), varSaldo.get())
+def InsertRegistro():
+    controlador1.Guardar(varNom.get(), varNCuenta.get(), varSaldo.get())
 
-
-
+def Busqueda():
+    bus = controlador1.consultarRegistros()
+    tabla.delete(*tabla.get_children()) #limpia
+    for r in bus:
+        tabla.insert("", "end", text = r[0], values = (r[1], r[2], r[3]))
+        
+def ActualizarNom():
+    controlador1.ActualizarNom(varID.get(), varNomA.get())
+    messagebox.showinfo("Actualización exitosa", "Se actualizó el nombre del usuario exitosamente")
+    
+def ActualizarCuenta():
+    controlador1.ActualizarCuenta(varID.get(), varNumCA.get())
+    messagebox.showinfo("Actualización exitosa", "Se actualizó la cuenta del usuario exitosamente")
+    
+def ActualizarSaldo():
+    controlador1.ActualizarSaldo(varID.get(), varSaldoA.get())
+    messagebox.showinfo("Actualización exitosa", "Se actualizó el saldo del usuario exitosamente")
+        
 Ventana = Tk()
 Ventana.title("TU CUENTA DE BANCO")
 Ventana.geometry("500x350")
@@ -37,7 +53,7 @@ txtCor = Entry(pestana1, textvariable = varNCuenta).pack()
 lblCont = Label(pestana1, text = "Saldo:").pack()
 txtCont = Entry(pestana1, textvariable = varSaldo).pack()
 
-btnGuardar = Button(pestana1, text = "Guardar", command = Insert).pack()
+btnGuardar = Button(pestana1, text = "Guardar", command = InsertRegistro).pack()
 
 #PESTAÑA 2
 
@@ -50,13 +66,13 @@ lblID2 = Label(pestana2, text = "Identificador de usuario:").pack()
 txtID2 = Entry(pestana2, textvariable = varID).pack()
 lblNom1 = Label(pestana2, text = "Nombre:").pack()
 txtNom1 = Entry(pestana2, textvariable = varNomA).pack()
-btnNom = Button(pestana2, text = "Actualizar nombre").pack()
+btnNom = Button(pestana2, text = "Actualizar nombre", command = ActualizarNom).pack()
 lblCor1 = Label(pestana2, text = "Número de cuenta:").pack()
 txtCor1 = Entry(pestana2, textvariable = varNumCA).pack()
-btnCor = Button(pestana2, text = "Actualizar número de cuenta").pack()
+btnCor = Button(pestana2, text = "Actualizar número de cuenta", command = ActualizarCuenta).pack()
 lblCon1 = Label(pestana2, text = "Saldo:").pack()
 txtCon1 = Entry(pestana2, textvariable = varSaldoA).pack()
-btnCon = Button(pestana2, text = "Actualizar saldo").pack()
+btnCon = Button(pestana2, text = "Actualizar saldo", command = ActualizarCuenta).pack()
 
 #PESTAÑA 3
 
@@ -73,7 +89,7 @@ tabla.heading("Nombre", text = "Nombre", anchor = tk.CENTER)
 tabla.heading("Número de cuenta", text = "Número de cuenta", anchor = tk.CENTER)
 tabla.heading("Saldo", text = "Saldo", anchor = tk.CENTER)
 tabla.pack()
-btnBuscar = Button(pestana3, text = "Buscar").pack()
+btnBuscar = Button(pestana3, text = "Buscar", command = Busqueda).pack()
 
 panel.add(pestana1, text = 'Formuario')
 panel.add(pestana2, text = 'Actualizar')
