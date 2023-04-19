@@ -1,7 +1,14 @@
 from tkinter import *
 from tkinter import ttk
 import tkinter as tk
-from controladorB import *
+from controladorBanco import *
+
+controlador = controladorBDBanco
+
+def Insert():
+    controlador.Guardar(varNom.get(), varNCuenta.get(), varSaldo.get())
+
+
 
 Ventana = Tk()
 Ventana.title("TU CUENTA DE BANCO")
@@ -28,9 +35,9 @@ lblCor = Label(pestana1, text = "Número de cuenta:").pack()
 txtCor = Entry(pestana1, textvariable = varNCuenta).pack()
 
 lblCont = Label(pestana1, text = "Saldo:").pack()
-txtCont = Entry(pestana1, textvariable = varSaldo, show = "*").pack()
+txtCont = Entry(pestana1, textvariable = varSaldo).pack()
 
-btnGuardar = Button(pestana1, text = "Guardar").pack()
+btnGuardar = Button(pestana1, text = "Guardar", command = Insert).pack()
 
 #PESTAÑA 2
 
