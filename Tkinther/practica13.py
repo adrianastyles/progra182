@@ -9,13 +9,17 @@ ventana = Tk()
 ventana.title("GENERADOR DE CONTRASEÑAS")
 ventana.geometry("450x250")
 
-seccion1 = Frame(ventana, bg = "#e9edd1")
+seccion1 = Frame(ventana, bg = "#e6f8fa")
 seccion1.pack(expand = True, fill = 'both')
 
 
 def Ingresar():
     datos = Generador()
-    datos.Generador1(var1.get(), var2.get(), var3.get())
+    datos.Generador1(int(var1.get()), var2.get(), var3.get())
+    
+def Validar():
+    datos = Generador()
+    datos.Validar1(int(var1.get()), var2.get(), var3.get())
 
 #CONTRASEÑA
 
@@ -37,18 +41,13 @@ label1.place (x=10, y=110)
 c3= Entry(seccion1, width=10, textvariable = var3)
 c3.place(x=200, y = 110)
 
-var4 = tk.StringVar()
-label1=tk.Label(seccion1, text="La contraseña es:")
-label1.place (x=10, y=150)
-c4= Entry(seccion1, width=20, textvariable = var4)
-c4.place(x=200, y = 150)
 
 #BOTON GENERAR/VALIDAR
 
 botonIngresar = Button(seccion1, text = "Generar", fg = "black", bg = "#d5d6ce", command = Ingresar)
-botonIngresar.place(x=70, y=200, width = 100, height = 30)
+botonIngresar.place(x=70, y=160, width = 100, height = 30)
 
-botonValidar = Button(seccion1, text = "Validar", fg = "black", bg = "#d5d6ce")
-botonValidar.place(x=250, y=200, width = 100, height = 30)
+botonValidar = Button(seccion1, text = "Validar", fg = "black", bg = "#d5d6ce", command = Validar)
+botonValidar.place(x=250, y=160, width = 100, height = 30)
 
 ventana.mainloop()
