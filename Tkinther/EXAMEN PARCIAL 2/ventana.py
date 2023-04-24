@@ -6,8 +6,11 @@ from matricula import *
 
 def Generar():
     datos = GeneradorMatricula(var1.get(), var2.get(), var3.get(), var4.get(), var5.get())
-    print (datos.getAñoCurso(), datos.getAño(), datos.getNombre(), datos.getApellidoP(), datos.getApellidoM(), datos.getCarrera())
-
+    messagebox.showinfo("Matricula", str(datos.getAñoCurso()) + str(datos.getAño())  + str(datos.getAño1()) + 
+                         str(datos.getNombre()) + str(datos.getApellidoP()) + str(datos.getApellidoM()) + 
+                         str(datos.getNumeros()) + str(datos.getCarrera()) + str(datos.getCarrera1()) + 
+                         str(datos.getCarrera2()))
+    
 ventana = Tk()
 ventana.title("Generador de matrículas")
 ventana.geometry("450x250")

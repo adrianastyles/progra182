@@ -1,5 +1,5 @@
 from tkinter import messagebox
-
+import random
 class GeneradorMatricula:
     
     def __init__ (self, n, ap, am, a, c):
@@ -29,17 +29,28 @@ class GeneradorMatricula:
         self.__apellidoMaterno = am
     
     def getAño (self):
-        return self.__año[2], self.__año[3]
+        return self.__año[2]
+    
+    def getAño1 (self):
+        return self.__año[3]
     
     def setAño (self, a):
         self.__año = a
         
     def getCarrera (self):
-        return self.__carrera[0], self.__carrera[1], self.__carrera[2]
+        return self.__carrera[0]
     
-    def setCarrera (self, c):
-        self.__carrera = c
+    def getCarrera1 (self):
+        return self.__carrera[1]
+    
+    def getCarrera2 (self):
+        return self.__carrera[2]
         
     def getAñoCurso (self):
         return self.__añocurso
+    
+    def getNumeros (self):
+        valores = "0123456789"
+        r = [random.choice(valores) for i in range(3)]
+        return r
     
