@@ -25,8 +25,6 @@ class controladorBD:
             conx.close()
             
         else:
-            #realizar insert a la base de datos
-            #preparar variables
             cursor = conx.cursor()
             datos = (nom, cuenta, saldo)
             sqlInsert = "insert into TBCuentas(Nombre, Cuenta, Saldo) values (?, ?, ?)"
