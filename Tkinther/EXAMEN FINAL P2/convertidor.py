@@ -4,17 +4,21 @@ class Convertidor1:
     
     def RomanosAArabigo (self, nRomano):
         if (nRomano == ""):
-            messagebox.showerror("Warning", "Ingrese un número")
+            messagebox.showerror ("Warning", "Ingrese un número")
         else:
             romanos = {'I': 1, 'V': 5, 'X': 10, 'L': 50, 'C': 100, 'D': 500, 'M': 1000}
-            op = 0
+            s = 0
+            for i in range(0, len(nRomano)-1):
+                if (romanos[nRomano[i]] < romanos[nRomano[i+1]]):
+                    messagebox.showerror("Warning", "Ingrese un número romano existente")
+                    return
             for i in range(0, len(nRomano)):
                 if (i == 0 or romanos[nRomano[i]] <= romanos[nRomano[i - 1]]):
-                    op += romanos[nRomano[i]]
+                    s += romanos[nRomano[i]]
                 else:
-                    op += romanos[nRomano[i]] - 2 * romanos[nRomano[i - 1]]
-            if (op <= 50):
-                messagebox.showinfo ("Coversión exitosa", "El número es: " + str(op))
+                    s += romanos[nRomano[i]] - 2 * romanos[nRomano[i - 1]]
+            if (s <= 50):
+                messagebox.showinfo("Conversión exitosa", "El número es: " + str(s))
             else:
                 messagebox.showerror("Warning", "Ingrese un número menor a 50")
             
